@@ -8,8 +8,7 @@ public class Palyndrome{
     int size;
     int revSize;
 
-    System.out.println("Enter the number of digits for your value.");
-    System.out.print("Number of digits: ");
+    System.out.print("Enter the number of digits for your value: ");
     size = scanner.nextInt();
     revSize = size - 1;
 
