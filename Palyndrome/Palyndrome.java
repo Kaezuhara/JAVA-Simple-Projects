@@ -52,8 +52,6 @@ public class Palyndrome{
       System.out.println("The integer you entered is a NOT PALYNDROME.");
     }
 
-    
-
     scanner.close();
   }
 
