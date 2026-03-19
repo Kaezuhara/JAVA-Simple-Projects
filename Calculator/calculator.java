@@ -13,17 +13,37 @@ public class calculator{
     int result;
 
     while(repeat.equalsIgnoreCase("y")){
+
+      System.out.println("");
+      System.out.println("---------------------------------------");
+      System.out.println("");
       
       while(true){
 
         // add if statement validation here
-        System.out.print("Enter first integer: ");
-        firstNum = scanner.nextInt();
-        System.out.print("Enter second integer: ");
-        secondNum = scanner.nextInt();
-        // add if statement validation here
+        while(true){
+          System.out.print("Enter first integer: ");
+          if(scanner.hasNextInt()){
+            firstNum = scanner.nextInt();
+            break;
+          } else{
+            System.out.println("Invalid input. Please enter an integer.");
+            scanner.next();
+          }
+        }
 
-        System.out.print("Enter your desired operation: ");
+        while(true){
+          System.out.print("Enter second integer: ");
+          if(scanner.hasNextInt()){
+            secondNum = scanner.nextInt();
+            break;
+          } else{
+            System.out.println("Invalid input. Please enter an integer.");
+            scanner.next();
+          }
+        }
+
+        System.out.print("Choose your desired operation (+ - * /): ");
         operation = scanner.next();
 
         if(operation.equals("+")){
@@ -48,8 +68,10 @@ public class calculator{
       }
 
       System.out.println("Result: " + result);
+      System.out.println("Solution: " + firstNum + " " + operation + " " + secondNum + " = " + result);
 
       while(true){
+        System.out.println("");
         System.out.print("Do you want to repeat the program? (y/n): ");
         repeat = scanner.next();
 
@@ -60,6 +82,8 @@ public class calculator{
         }
       }
     }
+  System.out.println("Thank you! Terminating the program...");
+  System.out.println("");  
   scanner.close();
   }
 }
