@@ -27,13 +27,13 @@ public class banking{
           choice = scanner.nextInt();
           
           if (choice == 1){
-            System.out.printf("\nYour balance is: %.2f\n", balance);
+            System.out.printf("\nYour balance is: $%.2f\n", balance);
             break;
           } else if (choice == 2){
-            balance += deposit(balance, scanner);
+            balance = deposit(balance, scanner);
             break;
           } else if (choice == 3){
-            System.out.println("Withdrawing...");
+            balance = withdraw(balance, scanner);
             break;
           } else if (choice == 4){
             break;
@@ -52,6 +52,7 @@ public class banking{
     scanner.close();
   }
 
+  // ----- DEPOSIT METHOD -----
   static double deposit(double balance, Scanner scanner){
     
     double deposit = 0.0;
@@ -65,8 +66,8 @@ public class banking{
         deposit = Math.round(deposit * 100.0) / 100.0;
 
         if (deposit > 0){
-          balance = balance + deposit;
-          balance = Math.round(deposit * 100.0) / 100.0;
+          balance += deposit;
+          balance = Math.round(balance * 100.0) / 100.0;
           System.out.println("Deposit successful.");
           break;
         } else {
@@ -80,8 +81,35 @@ public class banking{
     }
     return balance;
   }
-}
 
-// CHECK BALANCE
-// DEPOSIT
-// WITHDRAW
+  // ----- WITHDRAW METHOD -----
+  static double withdraw(double balance, Scanner scanner){
+    double withdraw = 0.0;
+
+    while (true){
+      System.out.print("Enter withdraw amount: ");
+
+      if (scanner.hasNextDouble()){
+        withdraw = scanner.nextDouble();
+
+        withdraw = Math.round(withdraw * 100.0) / 100.0;
+
+        if (withdraw > 0 && balance >= withdraw){
+          balance -= withdraw;
+          balance = Math.round(balance * 100.0) / 100.0;
+          System.out.println("Withdraw successful.");
+          break;
+        } else if (withdraw > 0 && withdraw > balance){
+          System.out.println("Not enough balance. Withdraw failed.");
+        } else {
+          System.out.println("Invalid input.");
+        }
+
+      } else {
+        System.out.println("Invalid input.");
+        scanner.next();
+      }
+    }
+    return balance;
+  }
+}
